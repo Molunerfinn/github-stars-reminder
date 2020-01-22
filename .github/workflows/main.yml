@@ -39,6 +39,3 @@ env:
   MAIL_FROM: "${{secrets.MAIL_FROM}}"
   MAIL_TO: "${{secrets.MAIL_TO}}"
   TOP_NUMBER: ${{secrets.TOP_NUMBER}}
-      # - run: npm run build
-        # env:
-        #   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

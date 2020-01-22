@@ -1,4 +1,4 @@
-const gqlSender = require('./src/gqlSender')
+const { fetchData, postData } = require('./src/github')
 require('dotenv').config()
 const mailer = require('./src/mailer')
 const mdGenerator = require('./src/mdGenerator')
@@ -19,9 +19,9 @@ const writer = (filePath, data) => {
 
 const main = async () => {
   console.log('Fetching data...')
-  const data = await gqlSender()
+  const data = await fetchData()
   console.log('Fetching data done, handle data...')
-  const mdText = mdGenerator(data)
+  const mdText = mdGenerator(data.data)
   const htmlText = await htmlGenerator(mdText)
   const today = dayjs.format('YYYY-MM-DD')
   const dataPath = resolve(`${today}.json`)
@@ -40,6 +40,9 @@ const main = async () => {
       }
     ]
   })
+  if (process.env.DATA_REPO) {
+    await postData(`${today}.json`, JSON.stringify(data), process.env.DATA_REPO)
+  }
   console.log('All done!')
   process.exit(0)
 }

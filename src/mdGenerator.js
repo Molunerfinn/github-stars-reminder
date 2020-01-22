@@ -41,7 +41,7 @@ const tableGenerator = (data) => {
   let tableBody = ''
 
   data.forEach(item => {
-    tableBody += `| ${item.name} | ${item.stars} | \n`
+    tableBody += `| [${item.name}](https://github.com/${process.env.GH_USER}/${item.name}) | ${item.stars} | \n`
   })
 
   return tableHead + '\n' + tableSep + '\n' + tableBody
