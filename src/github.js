@@ -44,12 +44,18 @@ const fetchData = async () => {
  */
 const postData = async (fileName, data, repoName) => {
   const year = dayjs.year()
+  const existsFileResult = (await axios.get(`/repos/${repoName}/contents/${year}/${fileName}`)).data
+  let sha
+  if (existsFileResult.sha) {
+    sha = existsFileResult.sha
+  }
   const postOption = {
     method: 'PUT',
     url: `/repos/${repoName}/contents/${year}/${fileName}`,
     data: {
       message: 'Upload by github-stars-reminder',
       branch: 'master',
+      sha,
       content: Buffer.from(data).toString('base64'),
       path: year + '/' + fileName
     },
