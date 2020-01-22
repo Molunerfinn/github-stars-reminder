@@ -1,0 +1,34 @@
+{
+  "name": "email-sender",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Molunerfinn/email-sender.git"
+  },
+  "author": "Molunerfinn",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Molunerfinn/email-sender/issues"
+  },
+  "homepage": "https://github.com/Molunerfinn/email-sender#readme",
+  "dependencies": {
+    "axios": "^0.19.1",
+    "dayjs": "^1.8.19",
+    "dotenv": "^8.2.0",
+    "markdown-it": "^10.0.0",
+    "nodemailer": "^6.4.2"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1"
+  }
+}

@@ -1,0 +1,47 @@
+const gqlSender = require('./src/gqlSender')
+require('dotenv').config()
+const mailer = require('./src/mailer')
+const mdGenerator = require('./src/mdGenerator')
+const htmlGenerator = require('./src/htmlGenerator')
+const fs = require('fs')
+const path = require('path')
+const dayjs = require('./src/day')
+
+const resolve = (fileName) => {
+  return path.join(__dirname, './results', fileName)
+}
+
+const writer = (filePath, data) => {
+  return fs.writeFileSync(filePath, data, {
+    encoding: 'utf-8'
+  })
+}
+
+const main = async () => {
+  console.log('Fetching data...')
+  const data = await gqlSender()
+  console.log('Fetching data done, handle data...')
+  const mdText = mdGenerator(data)
+  const htmlText = await htmlGenerator(mdText)
+  const today = dayjs.format('YYYY-MM-DD')
+  const dataPath = resolve(`${today}.json`)
+  const mdPath = resolve(`${today}.md`)
+  const htmlPath = resolve('index.html')
+  console.log('Handle data done, write file...')
+  writer(dataPath, JSON.stringify(data))
+  writer(mdPath, mdText)
+  writer(htmlPath, htmlText)
+  console.log('Write file done, send email...')
+  await mailer({
+    html: htmlText,
+    attachments: [
+      {
+        path: dataPath
+      }
+    ]
+  })
+  console.log('All done!')
+  process.exit(0)
+}
+
+main()
