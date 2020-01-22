@@ -26,17 +26,17 @@ jobs:
           git config user.email "marksz@teamsz.xyz"
           git add index.html
           git commit -m "GitHub actions build pages"
-          git push  --force --quiet "https://${GH_TOKEN}@github.com/Molunerfinn/github-stars-reminder.git" master:gh-pages
-      env:
-        GH_TOKEN: "${{secrets.GH_TOKEN}}"
-        GH_USER: "${{secrets.GH_USER}}"
-        MAIL_USER: "${{secrets.MAIL_USER}}"
-        MAIL_PASS: "${{secrets.MAIL_PASS}}"
-        MAIL_HOST: "${{secrets.MAIL_HOST}}"
-        MAIL_PORT: ${{secrets.MAIL_PORT}}
-        MAIL_FROM: "${{secrets.MAIL_FROM}}"
-        MAIL_TO: "${{secrets.MAIL_TO}}"
-        TOP_NUMBER: ${{secrets.TOP_NUMBER}}
+          git push --force --quiet "https://${GH_TOKEN}@github.com/Molunerfinn/github-stars-reminder.git" master:gh-pages
+env:
+  GH_TOKEN: "${{secrets.GH_TOKEN}}"
+  GH_USER: "${{secrets.GH_USER}}"
+  MAIL_USER: "${{secrets.MAIL_USER}}"
+  MAIL_PASS: "${{secrets.MAIL_PASS}}"
+  MAIL_HOST: "${{secrets.MAIL_HOST}}"
+  MAIL_PORT: ${{secrets.MAIL_PORT}}
+  MAIL_FROM: "${{secrets.MAIL_FROM}}"
+  MAIL_TO: "${{secrets.MAIL_TO}}"
+  TOP_NUMBER: ${{secrets.TOP_NUMBER}}
       # - run: npm run build
         # env:
         #   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
