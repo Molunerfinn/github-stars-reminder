@@ -40,6 +40,8 @@ const main = async () => {
       }
     ]
   })
+  console.log('Send email done!')
+  console.log('Check if data_repo', process.env.DATA_REPO)
   if (process.env.DATA_REPO) {
     await postData(`${today}.json`, JSON.stringify(data), process.env.DATA_REPO)
   }

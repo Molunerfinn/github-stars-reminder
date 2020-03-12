@@ -44,7 +44,14 @@ const fetchData = async () => {
  */
 const postData = async (fileName, data, repoName) => {
   const year = dayjs.year()
-  const existsFileResult = (await axios.get(`/repos/${repoName}/contents/${year}/${fileName}`)).data
+  let existsFileResult = {}
+  try {
+    existsFileResult = (await axios.get(`/repos/${repoName}/contents/${year}/${fileName}`)).data
+  } catch (e) {
+    if (e.response.status === 404) {
+      console.log('Non exists')
+    }
+  }
   let sha
   if (existsFileResult.sha) {
     sha = existsFileResult.sha
