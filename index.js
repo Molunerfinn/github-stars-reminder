@@ -19,6 +19,7 @@ const writer = (filePath, data) => {
 
 const main = async () => {
   console.log('Fetching data...')
+  console.log('Current User:', process.env.GH_USER)
   const data = await fetchData()
   console.log('Fetching data done, handle data...')
   const mdText = mdGenerator(data.data)
