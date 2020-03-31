@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/Molunerfinn/email-sender#readme",
   "dependencies": {
-    "axios": "^0.19.1",
+    "axios": "0.19.1",
     "dayjs": "^1.8.19",
     "dotenv": "^8.2.0",
     "markdown-it": "^10.0.0",
